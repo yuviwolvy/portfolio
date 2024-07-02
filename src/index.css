@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.cabin-custom {
+  font-family: "Cabin", sans-serif;
+  font-variation-settings: "wdth" 100;
+}
+
+body {
+  @apply bg-bgColor;
+  @apply font-cabin;
+}
