@@ -1,3 +1,7 @@
+import React from "react";
+import { TypeAnimation } from "react-type-animation";
+import strawHat from "../assets/straw-hat.png";
+
 const AboutMe = () => {
   return (
     <section
@@ -5,10 +9,26 @@ const AboutMe = () => {
       className="min-h-screen flex flex-col items-center justify-center bg-gray-100 p-6"
     >
       <div className="text-center max-w-3xl">
-        <p className="text-lg text-secondary mb-4">
-          Watashi no namae wa<br></br>{" "}
-          <span className="font-bold">Yuvrajsinh D. Chauhan</span>, Since
-          January 2024 till date, working as a Software Engineer Intern at
+        <TypeAnimation
+          sequence={["Watashi no namae wa", 2500, "My name is"]}
+          wrapper="span"
+          speed={1}
+          className="inline-block text-3xl italic font-thin mb-4 text-primary "
+          preRenderFirstString={true}
+        />
+
+        <p className="block w-full text-8xl font-bold text-primary text-center mb-4">
+          Yuvrajsinh{" "}
+          <span className="relative inline-block">
+            <span className="absolute top-0 left-1/2 transform -translate-x-1/2">
+              <img src={strawHat} alt="straw hat" className="straw-hat" />
+            </span>
+            D.
+          </span>{" "}
+          Chauhan,
+        </p>
+        <p>
+          Since January 2024 till date, working as a Software Engineer Intern at
           Rapidops. With a strong foundation in{" "}
           <span className="font-bold">React</span> and{" "}
           <span className="font-bold">JavaScript</span>, Passionate about

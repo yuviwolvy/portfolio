@@ -11,3 +11,26 @@ body {
   @apply bg-bgColor;
   @apply font-cabin;
 }
+
+@keyframes fall {
+  0% {
+    top: -100px;
+    opacity: 0;
+    transform: rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    top: 0px;
+    opacity: 1;
+    transform: rotate(360deg);
+  }
+}
+
+.straw-hat {
+  position: relative;
+  width: 70px;
+  animation: fall 3s ease-in-out forwards;
+  transform: translate(-30%, -50%);
+}
