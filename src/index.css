@@ -15,6 +15,7 @@ body {
 @keyframes fall {
   0% {
     top: -100px;
+    left: 0px;
     opacity: 0;
     transform: rotate(0deg);
   }
@@ -23,6 +24,7 @@ body {
   }
   100% {
     top: 0px;
+    left: -25px;
     opacity: 1;
     transform: rotate(360deg);
   }
@@ -30,7 +32,19 @@ body {
 
 .straw-hat {
   position: relative;
-  width: 70px;
   animation: fall 3s ease-in-out forwards;
-  transform: translate(-30%, -50%);
+}
+
+.hidden-logo {
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.list-item:hover .hidden-logo {
+  opacity: 1;
+  left: 100px;
+}
+
+.list-item:hover .list-text {
+  color: var(--brand-color);
 }
