@@ -48,3 +48,91 @@ body {
 .list-item:hover .list-text {
   color: var(--brand-color);
 }
+
+.repo-grid {
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 p-8;
+}
+
+.card {
+  @apply text-white bg-cover rounded-lg overflow-hidden transition-transform duration-500 ease-in-out relative h-64;
+  background-image: url("\\assets\\aot.jpg");
+}
+
+.card:hover,
+.card:focus-within {
+  @apply transform scale-105;
+}
+
+.card-content {
+  @apply absolute inset-0 p-4 flex flex-col justify-end bg-gradient-to-t from-black via-black/60 to-transparent;
+}
+
+.card-title {
+  @apply text-xl font-bold mb-2 relative;
+  @apply w-full overflow-hidden text-ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.card-title::after {
+  content: "";
+  @apply absolute h-0.5 left-0 -bottom-0.5 w-full bg-green-400 scale-x-0 origin-left transition-transform duration-500 ease-in-out;
+}
+
+.card:hover .card-title::after,
+.card:focus-within .card-title::after {
+  @apply scale-x-100;
+}
+
+.card-body {
+  @apply text-white/85 mb-4 overflow-hidden text-ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+.button {
+  @apply cursor-pointer inline-block no-underline text-gray-900 bg-green-400 py-2 px-4 rounded-md transition-colors duration-300 text-sm;
+}
+
+.button:hover,
+.button:focus {
+  @apply bg-white;
+}
+
+@media (hover: hover) {
+  .card-content {
+    @apply transform translate-y-[calc(100%-4rem)] transition-transform duration-500 ease-in-out;
+  }
+  .card:hover .card-content,
+  .card:focus-within .card-content {
+    @apply transform translate-y-0;
+    transition-delay: 500ms;
+  }
+
+  .card:focus-within .card-content {
+    @apply transition-none;
+  }
+
+  .card-body,
+  .button {
+    @apply opacity-0 transition-opacity duration-500 ease-linear;
+  }
+
+  .card:hover .card-body,
+  .card:hover .button,
+  .card:focus-within .card-body,
+  .card:focus-within .button {
+    @apply opacity-100;
+    transition-delay: 1000ms;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    @apply animate-none transition-none scroll-auto;
+  }
+}
