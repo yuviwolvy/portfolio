@@ -2,7 +2,7 @@ import React from "react";
 
 const Navbar = () => {
   return (
-    <nav className="text-primary p-4 shadow-md fixed top-0 w-full z-10">
+    <nav className="text-primary p-4 shadow-md fixed top-0 w-full z-10 bg-bgColor">
       <ul className="flex justify-around">
         <li>
           <a href="#about" className="hover:text-accent hover:font-bold">

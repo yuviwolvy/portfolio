@@ -5,14 +5,12 @@ import { ReactLogo } from "@styled-icons/fa-brands/ReactLogo";
 import { Javascript } from "@styled-icons/boxicons-logos/Javascript";
 import { Typescript } from "@styled-icons/simple-icons/Typescript";
 import { Tailwindcss } from "@styled-icons/simple-icons/Tailwindcss";
-import { Github } from "@styled-icons/fa-brands/Github";
-import { Git } from "@styled-icons/boxicons-logos/Git";
 
 const AboutMe = () => {
   return (
     <section
       id="about-me"
-      className="min-h-screen flex flex-col items-center justify-center p-6 bg-gray-100"
+      className="min-h-screen flex flex-col items-center justify-center p-6"
     >
       <div className="text-center max-w-3xl">
         <TypeAnimation
