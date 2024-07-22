@@ -37,7 +37,12 @@ const repoData = [
 const RepoCard = ({ title, url, description, image }) => (
   <div
     className="card border-primary border-2"
-    style={{ backgroundImage: `url(${image})`, backgroundSize: "100% 100%" }}
+    style={{
+      backgroundImage: `url(${image})`,
+      backgroundSize: "80% 80%",
+      backgroundPosition: "center",
+      backgroundRepeat: "no-repeat",
+    }}
   >
     <div className="card-content">
       <h2 className="card-title">{title}</h2>
