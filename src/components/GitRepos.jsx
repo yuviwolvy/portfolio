@@ -57,7 +57,7 @@ const RepoCard = ({ title, url, description, image }) => (
 const GitRepos = () => {
   return (
     <section id="my-work">
-      <h1 className="block w-full text-6xl font-bold text-primary text-center mb-4">
+      <h1 className="block w-full text-4xl md:text-6xl font-bold text-primary text-center mb-4">
         Checkout My Git Repos
       </h1>
       <div className="repo-grid">

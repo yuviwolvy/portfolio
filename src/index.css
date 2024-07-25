@@ -30,9 +30,33 @@ body {
   }
 }
 
+@keyframes fall-mobile {
+  0% {
+    top: -100px;
+    left: 0px;
+    opacity: 0;
+    transform: rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    top: 0px;
+    left: -10px;
+    opacity: 1;
+    transform: rotate(360deg);
+  }
+}
+
 .straw-hat {
   position: relative;
   animation: fall 3s ease-in-out forwards;
+}
+
+@media (max-width: 640px) {
+  .straw-hat {
+    animation: fall-mobile 3s ease-in-out forwards;
+  }
 }
 
 .hidden-logo {
@@ -138,4 +162,39 @@ body {
   *::after {
     @apply animate-none transition-none scroll-auto;
   }
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 7px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #ebf4f6;
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #088395;
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #088395;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #ebf4f6;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #088395;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #088395;
 }

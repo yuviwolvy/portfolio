@@ -7,13 +7,9 @@ function App() {
   return (
     <>
       <Navbar />
-      {/* <div className="min-h-screen"> */}
       <AboutMe />
-      {/* </div> */}
-      {/* <div className="min-h-screen"> */}
       <GitRepos />
       <ContactMe />
-      {/* </div> */}
     </>
   );
 }

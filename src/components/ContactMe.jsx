@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import emailjs from "emailjs-com";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -15,6 +15,18 @@ const ContactMe = () => {
     from_email: "",
     message: "",
   });
+  const [isFormValid, setIsFormValid] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  useEffect(() => {
+    const isValid =
+      formData.from_name.trim() !== "" &&
+      emailRegex.test(formData.from_email) &&
+      formData.message.trim() !== "";
+    setIsFormValid(isValid);
+  }, [formData]);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -22,6 +34,7 @@ const ContactMe = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setIsSubmitting(true);
 
     emailjs
       .sendForm(
@@ -33,126 +46,142 @@ const ContactMe = () => {
       .then(
         (response) => {
           console.log("SUCCESS!", response.status, response.text);
+          setIsSubmitting(false);
           toast.success(
             "Thank you for contacting me! I will get back to you soon."
           );
+          setFormData({
+            from_name: "",
+            from_email: "",
+            message: "",
+          });
         },
         (error) => {
           console.log("FAILED...", error);
+          setIsSubmitting(false);
           toast.error("Sorry, something went wrong. Please try again.");
         }
       );
-
-    setFormData({
-      from_name: "",
-      from_email: "",
-      message: "",
-    });
   };
-
   return (
-    <div className="flex flex-col justify-center items-center p-8">
-      <div className="w-full md:w-1/2 p-4">
-        <h2 className="text-2xl font-bold mb-4 text-center">Contact Me</h2>
-        <form ref={form} onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <label className="block text-sm font-medium">Name</label>
+    <div
+      className="flex flex-col justify-center items-center p-8 min-h-screen"
+      id="contact-me"
+    >
+      <div className="w-full md:w-1/2 p-8 bg-white rounded-lg shadow-md">
+        <h1 className="text-4xl md:text-6xl font-bold text-primary text-center mb-8">
+          Reach out to me
+        </h1>
+        <form ref={form} onSubmit={handleSubmit} className="space-y-6">
+          <div className="relative">
             <input
               type="text"
               name="from_name"
               value={formData.from_name}
               onChange={handleChange}
-              className="mt-1 p-2 w-full border rounded-md"
+              className="block w-full px-3 py-2 bg-bgColor border border-secondary rounded-md text-sm shadow-sm placeholder-transparent
+                     focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent peer"
+              placeholder="Name"
               required
             />
+            <label className="absolute text-sm text-secondary duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-bgColor px-2 peer-focus:px-2 peer-focus:text-bgColor peer-focus:rounded-xl peer-focus:bg-accent peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1">
+              Name
+            </label>
           </div>
-          <div>
-            <label className="block text-sm font-medium">Email</label>
+          <div className="relative">
             <input
               type="email"
               name="from_email"
               value={formData.from_email}
               onChange={handleChange}
-              className="mt-1 p-2 w-full border rounded-md"
+              className="block w-full px-3 py-2 bg-bgColor border border-secondary rounded-md text-sm shadow-sm placeholder-transparent
+                     focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent peer"
+              placeholder="Email"
               required
             />
+            <label className="absolute text-sm text-secondary duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-bgColor px-2 peer-focus:px-2 peer-focus:text-bgColor peer-focus:rounded-xl peer-focus:bg-accent peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1">
+              Email
+            </label>
           </div>
-          <div>
-            <label className="block text-sm font-medium">Message</label>
+          <div className="relative">
             <textarea
               name="message"
               value={formData.message}
               onChange={handleChange}
-              className="mt-1 p-2 w-full border rounded-md"
+              className="block w-full px-3 py-2 bg-bgColor border border-secondary rounded-md text-sm shadow-sm placeholder-transparent resize-none
+                     focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent peer custom-scrollbar"
               rows="4"
+              placeholder="Message"
               required
             />
+            <label className="absolute text-sm text-secondary duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-bgColor px-2 peer-focus:px-2 peer-focus:text-bgColor peer-focus:rounded-xl peer-focus:bg-accent peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1">
+              Message
+            </label>
           </div>
           <button
             type="submit"
-            className="bg-blue-500 text-white py-2 px-4 rounded-md"
+            className={`w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-bgColor bg-primary hover:bg-secondary hover:rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-accent transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105 ${
+              !isFormValid || isSubmitting
+                ? "opacity-50 cursor-not-allowed"
+                : ""
+            }`}
+            disabled={!isFormValid || isSubmitting}
           >
-            Send
+            {isSubmitting ? "Sending..." : "Send Message"}
           </button>
         </form>
       </div>
 
-      {/* <div className="w-full md:w-1/2 p-4 flex justify-center items-center mt-8"> */}
-      <ul className="flex flex-wrap justify-center gap-4 mt-4">
+      <ul className="flex flex-wrap justify-center gap-4 mt-14">
         {[
           {
             href: "https://github.com/yuviwolvy",
-            text: "Let's build together!",
+            text: "GitHub",
             icon: Github,
-            color:
-              "text-[#24292e] hover:text-bgColor hover:drop-shadow-[0_1.2px_1.2px_#24292e]",
+            color: "text-[#24292e] hover:text-[#24292e]",
           },
           {
             href: "https://leetcode.com/u/yuvrajsinh-d-chauhan/",
-            text: "Check my stat!",
+            text: "LeetCode",
             icon: Leetcode,
-            color:
-              "text-[#f79e1b] hover:text-bgColor hover:drop-shadow-[0_1.2px_1.2px_#f79e1b]",
+            color: "text-[#f79e1b] hover:text-[#f79e1b]",
           },
           {
             href: "https://www.linkedin.com/in/yuviwolvy",
-            text: "Let's connect!",
+            text: "LinkedIn",
             icon: LinkedinSquare,
-            color:
-              "text-[#0077b5] hover:text-bgColor hover:drop-shadow-[0_1.2px_1.2px_#0077B5]",
+            color: "text-[#0077b5] hover:text-[#0077b5]",
           },
           {
             href: "https://www.instagram.com/yuviwolvy",
-            text: "Follow me!",
+            text: "Instagram",
             icon: Instagram,
-            color:
-              "text-[#e1306c] hover:text-bgColor hover:drop-shadow-[0_1.2px_1.2px_#e1306c]",
+            color: "text-[#e1306c] hover:text-[#e1306c]",
           },
           {
             href: "/Yuvrajsinh D. Chauhan.pdf",
-            text: "Download my Resume",
+            text: "Resume",
             icon: ArrowDownCircleFill,
-            color:
-              "text-[#88D66C] hover:text-bgColor hover:drop-shadow-[0_1.2px_1.2px_#88D66C]",
+            color: "text-[#88D66C] hover:text-[#88D66C]",
             download: "Yuvrajsinh D. Chauhan.pdf",
           },
         ].map((item, index) => (
-          <li
-            key={index}
-            href={item.href}
-            target={item.download ? "_self" : "_blank"}
-            rel={item.download ? undefined : "noopener noreferrer"}
-            className={`${item.color} group flex items-center gap-2 w-8 h-8`}
-            download={item.download}
-          >
-            <item.icon className="w-8 h-8 group-hover:hidden" />
-            <span className="hidden group-hover:block group-hover:font-extrabold group-hover:text-2xl ">
-              {item.text}
-            </span>
+          <li key={index} className="group">
+            <a
+              href={item.href}
+              target={item.download ? "_self" : "_blank"}
+              rel={item.download ? undefined : "noopener noreferrer"}
+              className={`flex items-center justify-center w-8 h-8 ${item.color} transition-all group-hover:w-auto group-hover:px-3 group-hover:font-extrabold group-hover:text-2xl overflow-hidden`}
+              download={item?.download}
+            >
+              <item.icon className="w-8 h-8 transition-all duration-300 group-hover:w-0 group-hover:mr-2" />
+              <span className="w-0 transition-all duration-300 group-hover:w-auto whitespace-nowrap">
+                {item.text}
+              </span>
+            </a>
           </li>
         ))}
       </ul>
-      {/* </div> */}
       <ToastContainer />
     </div>
   );
