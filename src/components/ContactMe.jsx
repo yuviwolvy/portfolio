@@ -138,50 +138,52 @@ const ContactMe = () => {
             href: "https://github.com/yuviwolvy",
             text: "GitHub",
             icon: Github,
-            color: "text-[#24292e] hover:text-[#24292e]",
+            color: "text-[#24292e]",
           },
           {
             href: "https://leetcode.com/u/yuvrajsinh-d-chauhan/",
             text: "LeetCode",
             icon: Leetcode,
-            color: "text-[#f79e1b] hover:text-[#f79e1b]",
+            color: "text-[#f79e1b]",
           },
           {
             href: "https://www.linkedin.com/in/yuviwolvy",
             text: "LinkedIn",
             icon: LinkedinSquare,
-            color: "text-[#0077b5] hover:text-[#0077b5]",
+            color: "text-[#0077b5]",
           },
           {
             href: "https://www.instagram.com/yuviwolvy",
             text: "Instagram",
             icon: Instagram,
-            color: "text-[#e1306c] hover:text-[#e1306c]",
+            color: "text-[#e1306c]",
           },
           {
             href: "/Yuvrajsinh D. Chauhan.pdf",
             text: "Resume",
             icon: ArrowDownCircleFill,
-            color: "text-[#88D66C] hover:text-[#88D66C]",
+            color: "text-[#88D66C]",
             download: "Yuvrajsinh D. Chauhan.pdf",
           },
         ].map((item, index) => (
-          <li key={index} className="group">
+          <li key={index}>
             <a
               href={item.href}
               target={item.download ? "_self" : "_blank"}
               rel={item.download ? undefined : "noopener noreferrer"}
-              className={`flex items-center justify-center w-8 h-8 ${item.color} transition-all group-hover:w-auto group-hover:px-3 group-hover:font-extrabold group-hover:text-2xl overflow-hidden`}
+              className={`flex items-center justify-center w-8 h-8 ${item.color}`}
               download={item?.download}
+              aria-label={item.text}
             >
-              <item.icon className="w-8 h-8 transition-all duration-300 group-hover:w-0 group-hover:mr-2" />
-              <span className="w-0 transition-all duration-300 group-hover:w-auto whitespace-nowrap">
-                {item.text}
-              </span>
+              <item.icon className="w-8 h-8" />
             </a>
           </li>
         ))}
       </ul>
+      <p className="text-base sm:text-lg md:text-xl text-primary mb-4 mt-10 text-center">
+        “If you don’t take risks, you can’t create a future.”
+        <span className="font-bold"> —Monkey D. Luffy.</span>
+      </p>
       <ToastContainer />
     </div>
   );

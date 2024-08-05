@@ -40,16 +40,22 @@ const AboutMe = () => {
         </p>
 
         <p className="text-base sm:text-lg md:text-xl text-primary mb-4">
-          Graduated with a{" "}
+          Graduated with{" "}
           <span className="font-bold">B.Tech in Computer Engineering</span> from
           Birla Vishvakarma Mahavidhyalaya
         </p>
 
         <p className="text-base sm:text-lg md:text-xl text-primary mb-4">
-          Since January 2024 till date, working as a Software Engineer Intern at
-          Rapidops. With a strong foundation in{" "}
+          Since January 2024, I've worked as a Software Engineer Intern at
+          Rapidops and was promoted to Junior Software Engineer in August. I
+          have a strong foundation in{" "}
           <span className="font-bold text-[#61DBFB]">React</span> and{" "}
           <span className="font-bold text-[#f0db4f]">JavaScript</span>.
+        </p>
+
+        <p className="text-base sm:text-lg md:text-xl text-primary mb-4">
+          Additionally, I work part-time as a marketing manager at P. N. Group
+          of Education, which includes P. N. Classes and P. N. Institute.
         </p>
 
         <ul className="flex flex-wrap justify-center gap-4 mt-6">
