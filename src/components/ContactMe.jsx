@@ -38,10 +38,10 @@ const ContactMe = () => {
 
     emailjs
       .sendForm(
-        "service_34zfppd",
-        "template_br26u9k",
+        process.env.REACT_APP_SERVICE_ID,
+        process.env.REACT_APP_TEMPLATE_ID,
         e.target,
-        "dfuT-0kdmn4wYwm2g"
+        process.env.REACT_APP_PUBLIC_KEY
       )
       .then(
         (response) => {

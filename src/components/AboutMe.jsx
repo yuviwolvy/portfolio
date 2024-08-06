@@ -54,7 +54,7 @@ const AboutMe = () => {
         </p>
 
         <p className="text-base sm:text-lg md:text-xl text-primary mb-4">
-          Additionally, I work part-time as a marketing manager at P. N. Group
+          Additionally, I work part-time as a Marketing Manager at P. N. Group
           of Education, which includes P. N. Classes and P. N. Institute.
         </p>
 
